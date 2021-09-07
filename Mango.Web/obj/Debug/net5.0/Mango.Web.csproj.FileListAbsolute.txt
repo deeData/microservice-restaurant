@@ -356,3 +356,4 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\ref\Mango
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Mango.Web.pdb
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Mango.Web.genruntimeconfig.cache
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Product\ProductIndex.cshtml.g.cs
