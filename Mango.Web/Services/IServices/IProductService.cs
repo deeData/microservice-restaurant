@@ -6,7 +6,7 @@ using Mango.Web.Models;
 
 namespace Mango.Web.Services.IServices
 {
-    public interface IProductService
+    public interface IProductService : IBaseService
     {
         //generic type T
         Task<T> GetAllProductsAsync<T>();
