@@ -43,7 +43,7 @@ namespace Mango.Services.Identity
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes = { "read", "write", "profile"}
                 },
-                //client for Mango ptpject
+                //client for Mango project
                  new Client
                 {
                     ClientId = "mango",
