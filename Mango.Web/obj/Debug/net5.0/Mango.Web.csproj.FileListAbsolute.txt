@@ -359,3 +359,4 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\bin\Debug\net5.0\Newtonsof
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Product\ProductIndex.cshtml.g.cs
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Product\ProductCreate.cshtml.g.cs
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Product\ProductEdit.cshtml.g.cs
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Product\ProductDelete.cshtml.g.cs
