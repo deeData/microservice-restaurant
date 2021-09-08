@@ -407,3 +407,4 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.Identity\obj\Debug\ne
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.Identity\obj\Debug\net5.0\ref\Mango.Services.Identity.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.Identity\obj\Debug\net5.0\Mango.Services.Identity.pdb
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.Identity\obj\Debug\net5.0\Mango.Services.Identity.genruntimeconfig.cache
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.Identity\bin\Debug\net5.0\keys\is-signing-key-DDF30FF57EFD01375707DB3763F20D63.json

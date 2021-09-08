@@ -49,7 +49,7 @@ namespace Mango.Services.Identity
                     ClientId = "mango",
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.Code,
-                    //use sslPort, oidc is open-id-connect
+                    //use sslPort, oidc is open-id-connect--- USE IDENTITY SERVER PORT
                     RedirectUris = { "https://localhost:44302/signin-oidc" },
                     PostLogoutRedirectUris = { "https://localhost:44302/signout-callback-oidc" },
                     AllowedScopes = new List<string>
@@ -59,7 +59,7 @@ namespace Mango.Services.Identity
                         IdentityServerConstants.StandardScopes.Email,
                         "mangoServer"
                     }
-                }
+                },
 
             };
     }

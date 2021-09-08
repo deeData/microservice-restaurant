@@ -37,17 +37,19 @@ namespace Mango.Services.Identity
                 .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             //add identity server
-            var builder = services.AddIdentityServer( options => 
-            {
-                options.Events.RaiseErrorEvents = true;
-                options.Events.RaiseInformationEvents = true;
-                options.Events.RaiseFailureEvents = true;
-                options.Events.RaiseSuccessEvents = true;
-                options.EmitStaticAudienceClaim = true;
-            }).AddInMemoryIdentityResources(SD.IdentityResources)
+            var builder = services.AddIdentityServer(options =>
+           {
+               options.Events.RaiseErrorEvents = true;
+               options.Events.RaiseInformationEvents = true;
+               options.Events.RaiseFailureEvents = true;
+               options.Events.RaiseSuccessEvents = true;
+               options.EmitStaticAudienceClaim = true;
+           }).AddInMemoryIdentityResources(SD.IdentityResources)
               .AddInMemoryApiScopes(SD.ApiScopes)
               .AddInMemoryClients(SD.Clients)
               .AddAspNetIdentity<ApplicationUser>();
+              //not using test users for login, should authenticate against db
+              //.AddTestUsers(IdentityServerHost.Quickstart.UI.TestUsers.Users);
 
             services.AddScoped<IDbInitializer, DbInitializer>();
 

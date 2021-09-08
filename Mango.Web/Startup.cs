@@ -46,10 +46,11 @@ namespace Mango.Web
                     options.ClientId = "mango";
                     options.ClientSecret = "secret";
                     options.ResponseType = "code";
+
                     options.TokenValidationParameters.NameClaimType = "name";
                     options.TokenValidationParameters.RoleClaimType = "role";
                     options.Scope.Add("mangoServer");
-                    options.SaveTokens = true;
+                    options.SaveTokens = true; 
                 });
      
         }

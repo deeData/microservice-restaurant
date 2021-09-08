@@ -1,4 +1,5 @@
 ﻿using Mango.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,6 +33,20 @@ namespace Mango.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        //if not authorized, will be directed to correct location
+        [Authorize]
+        //once authorized, redirected to index
+        public IActionResult Login()
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Logout()
+        {
+            //signout all cookies and scheme is iodc
+            return SignOut("Cookies", "iodc");
         }
     }
 }
