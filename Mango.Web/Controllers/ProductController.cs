@@ -32,7 +32,7 @@ namespace Mango.Web.Controllers
         }
 
         //GET action
-        public async Task<IActionResult> ProductCreate()
+        public Task<IActionResult> ProductCreate()
         {
             return View();
         }

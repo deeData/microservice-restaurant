@@ -1,4 +1,5 @@
 using Mango.Services.Identity.DbContexts;
+using Mango.Services.Identity.Initializer;
 using Mango.Services.Identity.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,6 +48,9 @@ namespace Mango.Services.Identity
               .AddInMemoryApiScopes(SD.ApiScopes)
               .AddInMemoryClients(SD.Clients)
               .AddAspNetIdentity<ApplicationUser>();
+
+            services.AddScoped<IDbInitializer, DbInitializer>();
+
             //create creds for development
             builder.AddDeveloperSigningCredential();
 
@@ -54,7 +58,7 @@ namespace Mango.Services.Identity
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +76,8 @@ namespace Mango.Services.Identity
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthorization();
+
+            dbInitializer.Initialize();
 
             app.UseEndpoints(endpoints =>
             {

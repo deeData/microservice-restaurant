@@ -8,5 +8,8 @@ namespace Mango.Services.Identity.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        //added props to migration
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
