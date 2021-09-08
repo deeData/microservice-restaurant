@@ -46,7 +46,7 @@ namespace Mango.Services.ProductAPI
                 .AddJwtBearer("Bearer", options=> 
                 {
                     //Idenity Server URL
-                    options.Authority = "https://localhost:44393/";
+                    options.Authority = "https://localhost:44393";
                     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
                         ValidateAudience = false
