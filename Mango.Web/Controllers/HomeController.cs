@@ -41,7 +41,7 @@ namespace Mango.Web.Controllers
         //once authorized, redirected to index
         public async Task<IActionResult> Login()
         {
-            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            //var accessToken = await HttpContext.GetTokenAsync("access_token");
             return RedirectToAction(nameof(Index));
         }
 
