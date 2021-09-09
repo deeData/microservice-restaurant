@@ -46,7 +46,7 @@ namespace Mango.Web.Controllers
         public IActionResult Logout()
         {
             //signout all cookies and scheme is iodc
-            return SignOut("Cookies", "iodc");
+            return SignOut("Cookies", "oidc");
         }
     }
 }
