@@ -54,15 +54,7 @@ namespace Mango.Services.ShoppingCartAPI
                     };
                 });
             //add authorization 
-            services.AddAuthorization(options =>
-            {
-                //below to add policy and scope
-                //options.AddPolicy("ApiScope", policy =>
-                //{
-                //    policy.RequireAuthenticatedUser();
-                //    policy.RequireClaim("scope", "mangoServer");
-                //});
-            });
+            services.AddAuthorization(options => { });
 
             services.AddSwaggerGen(c =>
             {
