@@ -368,3 +368,4 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\bin\Debug\net5.0\Microsoft
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs

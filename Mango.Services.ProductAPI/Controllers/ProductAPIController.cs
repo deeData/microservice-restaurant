@@ -30,7 +30,7 @@ namespace Mango.Services.ProductAPI.Controllers
 
         //swagger GET
         //only accessible to Authorized users
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<object> Get() 
         {
@@ -49,7 +49,7 @@ namespace Mango.Services.ProductAPI.Controllers
 
         //api definition is GET with paramater "id"
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         [Route("{id}")]
         public async Task<object> Get(int id)
         {
