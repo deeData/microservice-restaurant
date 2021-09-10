@@ -31,7 +31,10 @@ namespace Mango.Web
             SD.ProductAPIBase = Configuration["ServiceUrls:ProductAPI"];
             SD.ShoppingCartAPIBase = Configuration["ServiceUrls:ShoppingCartAPI"];
 
+            //has all the methods in the API calls
             services.AddScoped<IProductService, ProductService>();
+
+
             services.AddControllersWithViews();
 
             services.AddAuthentication(options =>
