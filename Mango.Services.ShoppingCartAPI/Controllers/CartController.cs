@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Mango.Services.ShoppingCartAPI.Controllers
 {
     [ApiController]
-    [Route("api/cart")]
+    [Route("api/cart/")]
     public class CartController : Controller
     {
         private readonly ICartRepository _cartRepository;
