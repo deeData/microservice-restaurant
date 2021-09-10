@@ -88,7 +88,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
         }
 
         [HttpPost("RemoveCoupon")]
-        public async Task<object> RemoveCoupon([FromBody] int userId)
+        public async Task<object> RemoveCoupon([FromBody] string userId)
         {
             try
             {

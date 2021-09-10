@@ -130,7 +130,7 @@ namespace Mango.Services.ShoppingCartAPI.Repository
 
 
 
-        public async Task<bool> ApplyCoupon(int userId, string couponCode)
+        public async Task<bool> ApplyCoupon(string userId, string couponCode)
         {
             var cartFromDb = await _db.CartHeaders.FirstOrDefaultAsync(u => u.UserId == userId);
             cartFromDb.CouponCode = couponCode;
@@ -139,7 +139,7 @@ namespace Mango.Services.ShoppingCartAPI.Repository
             return true;
         }
 
-        public async Task<bool> RemoveCoupon(int userId)
+        public async Task<bool> RemoveCoupon(string userId)
         {
             var cartFromDb = await _db.CartHeaders.FirstOrDefaultAsync(u => u.UserId == userId);
             cartFromDb.CouponCode = "";
