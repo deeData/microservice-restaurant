@@ -77,7 +77,7 @@ namespace Mango.Web.Controllers
             cartDetailsDtos.Add(cartDetails);
             cartDto.CartDetails = cartDetailsDtos;
 
-            //call Cart Service
+            //call Cart Service- posts to ShoppingCart db
             var accessToken = await HttpContext.GetTokenAsync("access_token");
             var addToCartResp = await _cartService.AddToCartAsync<ResponseDto>(cartDto, accessToken);
             if (addToCartResp !=null && addToCartResp.IsSuccess)
