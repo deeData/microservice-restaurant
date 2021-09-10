@@ -11,7 +11,7 @@ namespace Mango.Web.Services.IServices
         Task<T> GetCartByUserIdAsync<T>(string userId, string token = null);
         Task<T> AddToCartAsync<T>(CartDto cartDto, string token = null);
         Task<T> UpdateCartAsync<T>(CartDto cartDto, string token = null);
-        Task<T> RemoveFromCartAsync<T>(string cartDetailsId, string token = null);
+        Task<T> RemoveFromCartAsync<T>(int cartDetailsId, string token = null);
 
 
     }
