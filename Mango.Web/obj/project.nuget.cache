@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gc/qisx8hqkpVHt1HsQLo/mRDuR6zgmTPKWYnUFozhpwfIRJZGIfcUEluOCbYGhazAeQdGUgm4k1Ux8FMzwDGQ==",
+  "dgSpecHash": "uZpDAEmkn8a0NjmdTUpXj/t+yM7m9ziSn7yh0ST7WMN+tLiMDufADIjoHJ1eK+g5lBMDKJTj8WcEu1QUcXC9Zw==",
   "success": true,
   "projectFilePath": "C:\\Users\\deidr\\source\\repos\\MangoRestaurant\\Mango.Web\\Mango.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\deidr\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\deidr\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\deidr\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\deidr\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

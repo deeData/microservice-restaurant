@@ -36,7 +36,15 @@
                         <div class="col-12">
                             <label class="col-form-label">PickUp Time</label>
                             @*will use a class date-time picker called "form_datetime"*@
-                            <input asp-for="CartHeader.PickupDateTime" class="form-control form_datetime" type="text">
+                            @*<input asp-for="CartHeader.PickupDateTime" class="form-control form_datetime" type="text">*@
+
+                            <div class="input-append date" data-date="2012-12-21T15:25:00Z">
+                                <input asp-for="CartHeader.PickupDateTime" class="form_datetime" type="text" value="" readonly/>
+                                <span class="add-on"><i class="icon-remove fas fa-trash"></i></span>
+                                <span class="add-on"><i class="icon-th fas fa-clock"></i></span>
+                            </div>
+
+
                         </div>
                         <div class="col-12">
                             <label class="col-form-label">Card Number :</label>
@@ -119,4 +127,23 @@
             </div>
         </div>
     </form>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var dateTimeFormat = 'yyyy-mm-dd HH:ii P';
+            //$(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd HH:ii P' });
+            //$(".form_datetime").datetimepicker('setStartDate', new Date());
+            $(".form_datetime").datetimepicker({
+                format: dateTimeFormat,
+                showMeridian: true,
+                autoclose: true,
+                todayBtn: true,
+                clearBtn: true,
+                startDate: Date.now()
+            });
+        });
+
+    </script>
 }
