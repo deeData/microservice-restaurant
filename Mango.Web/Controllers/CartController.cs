@@ -12,12 +12,15 @@ namespace Mango.Web.Controllers
 {
     public class CartController : Controller
     {
+        //add APIs via dependency injection
         private readonly ICartService _cartService;
         private readonly IProductService _productService;
-        public CartController(ICartService cartService, IProductService productService)
+        private readonly ICouponService _couponService;
+        public CartController(ICartService cartService, IProductService productService, ICouponService couponService)
         {
             _cartService = cartService;
             _productService = productService;
+            _couponService = couponService;
         }
 
         //asp-action="CartIndex" biz logic
@@ -85,10 +88,22 @@ namespace Mango.Web.Controllers
             }
             if (cartDto.CartHeader!=null)
             {
+                //get current Coupon code if Cart Header is not null
+                if (!string.IsNullOrEmpty(cartDto.CartHeader.CouponCode))
+                {
+                    var coupon = await _couponService.GetCoupon<ResponseDto>(cartDto.CartHeader.CouponCode, accessToken);
+                    if (coupon != null && coupon.IsSuccess)
+                    {
+                        var couponObj = JsonConvert.DeserializeObject<CouponDto>(Convert.ToString(coupon.Result));
+                        cartDto.CartHeader.DiscountTotal = couponObj.DiscountAmount;
+                    }
+                }
+
                 foreach (var detail in cartDto.CartDetails)
                 {
                     cartDto.CartHeader.OrderTotal += (detail.Product.Price * detail.Count);
                 }
+                cartDto.CartHeader.OrderTotal -= cartDto.CartHeader.DiscountTotal;
             }
 
             return cartDto;   
