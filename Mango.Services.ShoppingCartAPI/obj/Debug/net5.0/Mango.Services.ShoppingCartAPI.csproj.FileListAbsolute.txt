@@ -52,7 +52,6 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\D
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.AssemblyInfoInputs.cache
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.AssemblyInfo.cs
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.csproj.CoreCompileInputs.cache
-C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\staticwebassets\Mango.Services.ShoppingCartAPI.StaticWebAssets.Manifest.cache
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\staticwebassets\Mango.Services.ShoppingCartAPI.StaticWebAssets.xml
@@ -63,3 +62,10 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\D
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\ref\Mango.Services.ShoppingCartAPI.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.pdb
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.genruntimeconfig.cache
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.Azure.Amqp.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.Azure.ServiceBus.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.Azure.Services.AppAuthentication.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Mango.MessageBus.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Mango.MessageBus.pdb

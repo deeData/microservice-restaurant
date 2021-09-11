@@ -12,12 +12,13 @@ namespace Mango.MessageBus
     public class AzureServiceBusMessageBus : IMessageBus
     {
         //should be in app settings file
-        private string connectionString = "Endpoint=sb://mango-restaurant.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=tsvVpCK7o+UUCtdZUi0q17se2CCdVKMc0894bWmHqig="
+        private string connectionString = "Endpoint=sb://mango-restaurant.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=tsvVpCK7o+UUCtdZUi0q17se2CCdVKMc0894bWmHqig=";
         public async Task PublishMessage(BaseMessage message, string topicName)
         {
             ISenderClient senderClient = new TopicClient(connectionString, topicName);
 
             var jsonMessage = JsonConvert.SerializeObject(message);
+
             var finalMessage = new Message(Encoding.UTF8.GetBytes(jsonMessage))
             {
                 //generic for now
