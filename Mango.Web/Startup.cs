@@ -26,16 +26,19 @@ namespace Mango.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //make available to front end
+            //make service available to front end
             services.AddHttpClient<IProductService, ProductService>();
             services.AddHttpClient<ICartService, CartService>();
+            services.AddHttpClient<ICouponService, CouponService>();
             //configure base path
             SD.ProductAPIBase = Configuration["ServiceUrls:ProductAPI"];
             SD.ShoppingCartAPIBase = Configuration["ServiceUrls:ShoppingCartAPI"];
+            SD.CouponAPIBase = Configuration["ServiceUrls:CouponAPI"];
 
             //has all the methods in the API calls
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICouponService, CouponService>();
 
 
             services.AddControllersWithViews();
