@@ -370,3 +370,4 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\bin\Debug\net5.0\System.Id
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Cart\CartIndex.cshtml.g.cs
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Web\obj\Debug\net5.0\Razor\Views\Cart\Checkout.cshtml.g.cs

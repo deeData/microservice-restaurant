@@ -29,6 +29,12 @@ namespace Mango.Web.Controllers
             return View(await LoadCartBasedOnLoggedInUser());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Checkout()
+        {
+            return View(await LoadCartBasedOnLoggedInUser());
+        }
+
         [HttpPost]
         //not really needed bc method is same name in asp-action
         [ActionName("ApplyCoupon")]
