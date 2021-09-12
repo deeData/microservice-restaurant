@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Mango.Services.OrderAPI.Messaging
 {
-    public class AzureServiceBusConsumer
+    public class AzureServiceBusConsumer : IAzureServiceBusConsumer
     {
         private readonly string serviceBusConnectionString;
         private readonly string subscriptionCheckout;
@@ -104,6 +104,8 @@ namespace Mango.Services.OrderAPI.Messaging
             }
             await _orderRepository.AddOrder(orderHeader);
         }
+
+        
     }
 }
 

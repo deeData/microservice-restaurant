@@ -59,3 +59,9 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\obj\Debug\ne
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\obj\Debug\net5.0\Mango.Services.OrderAPI.genruntimeconfig.cache
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\Humanizer.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\Azure.Core.Amqp.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\Azure.Messaging.ServiceBus.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\Microsoft.Azure.Amqp.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.OrderAPI\bin\Debug\net5.0\System.Memory.Data.dll
