@@ -1,4 +1,5 @@
 using Mango.Services.OrderAPI.DbContexts;
+using Mango.Services.OrderAPI.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,11 @@ namespace Mango.Services.OrderAPI
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //To configure repository as Singleton for AzureServiceBus connection
+            var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            services.AddSingleton(new OrderRepository(optionBuilder.Options));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
