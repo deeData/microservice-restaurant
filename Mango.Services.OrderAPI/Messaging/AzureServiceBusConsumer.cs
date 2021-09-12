@@ -15,9 +15,12 @@ namespace Mango.Services.OrderAPI.Messaging
     public class AzureServiceBusConsumer
     {
         private readonly string serviceBusConnectionString;
-        private readonly string subscriptionName;
+        private readonly string subscriptionCheckout;
         private readonly string checkoutMessageTopic;
         private readonly OrderRepository _orderRepository;
+
+        //when someone checks out, a message will be sent to ServerBus, checkoutProcessor is responsible for reading that message
+        private ServiceBusProcessor checkoutProcessor;
 
         //in order to pull in from appsettings
         private readonly IConfiguration _configuration;
@@ -28,9 +31,36 @@ namespace Mango.Services.OrderAPI.Messaging
             _configuration = configuration;
 
             serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
-            subscriptionName = _configuration.GetValue<string>("SubscriptionName"); 
+            subscriptionCheckout = _configuration.GetValue<string>("SubscriptionCheckout"); 
             checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
+
+            //in order to use ServiceBusProcessor, need a client
+            var client = new ServiceBusClient(serviceBusConnectionString);
+            checkoutProcessor = client.CreateProcessor(checkoutMessageTopic, subscriptionCheckout);
         }
+
+        //Start Message Processor
+        public async Task Start() 
+        {
+            checkoutProcessor.ProcessMessageAsync += OnCheckOutMessageReceived;
+            checkoutProcessor.ProcessErrorAsync += ErrorHandler;
+            await checkoutProcessor.StartProcessingAsync();
+        }
+
+        public async Task Stop()
+        {
+            await checkoutProcessor.StopProcessingAsync();
+            await checkoutProcessor.DisposeAsync();
+        }
+
+        private Task ErrorHandler(ProcessErrorEventArgs arg)
+        {
+            Console.WriteLine(arg.Exception.ToString());
+            return Task.CompletedTask;
+        }
+
+
+
 
         //message passed in from ServiceBus
         private async Task OnCheckOutMessageReceived(ProcessMessageEventArgs args)
