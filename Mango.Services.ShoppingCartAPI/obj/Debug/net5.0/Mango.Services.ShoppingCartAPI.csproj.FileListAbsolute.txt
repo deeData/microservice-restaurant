@@ -63,9 +63,15 @@ C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\D
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.pdb
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.genruntimeconfig.cache
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.Azure.Amqp.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Mango.MessageBus.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Mango.MessageBus.pdb
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Azure.Core.Amqp.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Azure.Messaging.ServiceBus.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\System.Memory.Data.dll
+C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\obj\Debug\net5.0\Mango.Services.ShoppingCartAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.Azure.ServiceBus.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.Azure.Services.AppAuthentication.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
 C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
-C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Mango.MessageBus.dll
-C:\Users\deidr\source\repos\MangoRestaurant\Mango.Services.ShoppingCartAPI\bin\Debug\net5.0\Mango.MessageBus.pdb
