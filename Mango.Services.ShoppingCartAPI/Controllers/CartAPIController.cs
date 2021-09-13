@@ -135,6 +135,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
                 checkoutHeader.CartDetails = cartDto.CartDetails;
                 //logic to add message to process order. (find exact topic name in Azure- should also put in appsettings)
                 await _messageBus.PublishMessage(checkoutHeader, "checkoutmessagetopic");
+                await _cartRepository.ClearCart(checkoutHeader.UserId);
 
                 
             }
