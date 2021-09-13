@@ -1,5 +1,4 @@
 ﻿using Mango.Services.Email.Messages;
-using Mango.Services.OrderAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

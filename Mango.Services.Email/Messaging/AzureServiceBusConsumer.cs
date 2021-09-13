@@ -1,5 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Mango.MessageBus;
+using Mango.Services.Email.Messages;
+using Mango.Services.Email.Repository;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -13,49 +14,34 @@ namespace Mango.Services.Email.Messaging
     public class AzureServiceBusConsumer : IAzureServiceBusConsumer
     {
         private readonly string serviceBusConnectionString;
-        private readonly string subscriptionCheckout;
-        private readonly string checkoutMessageTopic;
-        private readonly string orderPaymentProcessTopic;
+        private readonly string subscriptionEmail;
         private readonly string orderUpdatePaymentResultTopic;
 
-        private readonly EmailRepository _orderRepository;
+        private readonly EmailRepository _emailRepository;
 
-        //when someone checks out, a message will be sent to ServerBus, checkoutProcessor is responsible for reading that message
-        private ServiceBusProcessor checkoutProcessor;
         private ServiceBusProcessor orderUpdatePaymentStatusProcessor;
 
         //in order to pull in from appsettings
         private readonly IConfiguration _configuration;
-        private readonly IMessageBus _messageBus;
 
-        public AzureServiceBusConsumer(EmailRepository orderRepository, IConfiguration configuration, IMessageBus messageBus)
+        public AzureServiceBusConsumer(EmailRepository emailRepository, IConfiguration configuration)
         {
-            _orderRepository = orderRepository;
+            _emailRepository = emailRepository;
             _configuration = configuration;
-            _messageBus = messageBus;
 
             serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
-            subscriptionCheckout = _configuration.GetValue<string>("SubscriptionCheckout");
-            checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
-            orderPaymentProcessTopic = _configuration.GetValue<string>("orderPaymentProcessTopic");
+            subscriptionEmail = _configuration.GetValue<string>("SubscriptionName");
             orderUpdatePaymentResultTopic = _configuration.GetValue<string>("orderUpdatePaymentResultTopic");
 
             //in order to use ServiceBusProcessor, need a client
             var client = new ServiceBusClient(serviceBusConnectionString);
-
-            //will consume what's in the queue
-            checkoutProcessor = client.CreateProcessor(checkoutMessageTopic);
-            //checkoutProcessor = client.CreateProcessor(checkoutMessageTopic, subscriptionCheckout);
-            orderUpdatePaymentStatusProcessor = client.CreateProcessor(orderUpdatePaymentResultTopic, subscriptionCheckout);
+            //send email when order updates
+            orderUpdatePaymentStatusProcessor = client.CreateProcessor(orderUpdatePaymentResultTopic, subscriptionEmail);
         }
 
         //Start Message Processor
         public async Task Start()
         {
-            checkoutProcessor.ProcessMessageAsync += OnCheckOutMessageReceived;
-            checkoutProcessor.ProcessErrorAsync += ErrorHandler;
-            await checkoutProcessor.StartProcessingAsync();
-
             orderUpdatePaymentStatusProcessor.ProcessMessageAsync += OnOrderPaymentUpdateReceived;
             orderUpdatePaymentStatusProcessor.ProcessErrorAsync += ErrorHandler;
             await orderUpdatePaymentStatusProcessor.StartProcessingAsync();
@@ -63,9 +49,6 @@ namespace Mango.Services.Email.Messaging
 
         public async Task Stop()
         {
-            await checkoutProcessor.StopProcessingAsync();
-            await checkoutProcessor.DisposeAsync();
-
             await orderUpdatePaymentStatusProcessor.StopProcessingAsync();
             await orderUpdatePaymentStatusProcessor.DisposeAsync();
         }
@@ -77,64 +60,16 @@ namespace Mango.Services.Email.Messaging
         }
 
         //message passed in from ServiceBus
-        private async Task OnCheckOutMessageReceived(ProcessMessageEventArgs args)
+        private async Task OnOrderPaymentUpdateReceived(ProcessMessageEventArgs args)
         {
             var message = args.Message;
             var body = Encoding.UTF8.GetString(message.Body);
 
-            CheckoutHeaderDto checkoutHeaderDto = JsonConvert.DeserializeObject<CheckoutHeaderDto>(body);
-
-            //manual conversion from CheckoutHeaderDto to OrderHeader (instead of using autoMapper) 
-            //OrderHeader will create both header and details in the db- done by Entity Framework
-            OrderHeader orderHeader = new()
-            {
-                UserId = checkoutHeaderDto.UserId,
-                FirstName = checkoutHeaderDto.FirstName,
-                LastName = checkoutHeaderDto.LastName,
-                OrderDetails = new List<OrderDetails>(),
-                CardNumber = checkoutHeaderDto.CardNumber,
-                CouponCode = checkoutHeaderDto.CouponCode,
-                CVV = checkoutHeaderDto.CVV,
-                DiscountTotal = checkoutHeaderDto.DiscountTotal,
-                Email = checkoutHeaderDto.Email,
-                ExpiryMonthYear = checkoutHeaderDto.ExpiryMonthYear,
-                OrderTime = DateTime.Now,
-                OrderTotal = checkoutHeaderDto.OrderTotal,
-                PaymentStatus = false,
-                Phone = checkoutHeaderDto.Phone,
-                PickupDateTime = checkoutHeaderDto.PickupDateTime
-            };
-            foreach (var detailList in checkoutHeaderDto.CartDetails)
-            {
-                OrderDetails orderDetails = new()
-                {
-                    ProductId = detailList.ProductId,
-                    ProductName = detailList.Product.Name,
-                    Price = detailList.Product.Price,
-                    Count = detailList.Count
-                };
-                orderHeader.CartTotalItems += detailList.Count;
-                orderHeader.OrderDetails.Add(orderDetails);
-            }
-            await _orderRepository.AddOrder(orderHeader);
-
-
-            PaymentRequestMessage paymentRequestMessage = new()
-            {
-                Name = orderHeader.FirstName + " " + orderHeader.LastName,
-                CardNumber = orderHeader.CardNumber,
-                CVV = orderHeader.CVV,
-                ExpiryMonthYear = orderHeader.ExpiryMonthYear,
-                OrderId = orderHeader.OrderHeaderId,
-                OrderTotal = orderHeader.OrderTotal,
-                Email = orderHeader.Email
-            };
-
+            UpdatePaymentResultMessage emailMessage = JsonConvert.DeserializeObject<UpdatePaymentResultMessage>(body);
+            
             try
             {
-                //create new topic in MangoRestaurant Azure ServiceBus called "orderpaymentprocesstopic"
-                //and its subscription as "mangoPayment"
-                await _messageBus.PublishMessage(paymentRequestMessage, orderPaymentProcessTopic);
+                await _emailRepository.SendAndLogEmail(emailMessage);
                 await args.CompleteMessageAsync(args.Message);
             }
             catch (Exception e)
@@ -145,16 +80,6 @@ namespace Mango.Services.Email.Messaging
 
         }
 
-        private async Task OnOrderPaymentUpdateReceived(ProcessMessageEventArgs args)
-        {
-            var message = args.Message; 
-            var body = Encoding.UTF8.GetString(message.Body);
-
-            UpdatePaymentResultMessage paymentResultMessage = JsonConvert.DeserializeObject<UpdatePaymentResultMessage>(body);
-
-            await _orderRepository.UpdateOrderPaymentStatus(paymentResultMessage.OrderId, paymentResultMessage.Status);
-            await args.CompleteMessageAsync(args.Message);
-        }
 
     }
 }
