@@ -19,44 +19,55 @@ namespace Mango.Services.OrderAPI.Messaging
         private readonly string subscriptionCheckout;
         private readonly string checkoutMessageTopic;
         private readonly string orderPaymentProcessTopic;
+        private readonly string orderUpdatePaymentResultTopic;
 
         private readonly OrderRepository _orderRepository;
 
         //when someone checks out, a message will be sent to ServerBus, checkoutProcessor is responsible for reading that message
         private ServiceBusProcessor checkoutProcessor;
+        private ServiceBusProcessor orderUpdatePaymentStatusProcessor;
 
         //in order to pull in from appsettings
         private readonly IConfiguration _configuration;
         private readonly IMessageBus _messageBus;
-        
-        public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration,IMessageBus messageBus)
+
+        public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration, IMessageBus messageBus)
         {
             _orderRepository = orderRepository;
             _configuration = configuration;
             _messageBus = messageBus;
 
             serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
-            subscriptionCheckout = _configuration.GetValue<string>("SubscriptionCheckout"); 
+            subscriptionCheckout = _configuration.GetValue<string>("SubscriptionCheckout");
             checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
             orderPaymentProcessTopic = _configuration.GetValue<string>("orderPaymentProcessTopic");
+            orderUpdatePaymentResultTopic = _configuration.GetValue<string>("orderUpdatePaymentResultTopic");
 
             //in order to use ServiceBusProcessor, need a client
             var client = new ServiceBusClient(serviceBusConnectionString);
             checkoutProcessor = client.CreateProcessor(checkoutMessageTopic, subscriptionCheckout);
+            orderUpdatePaymentStatusProcessor = client.CreateProcessor(orderUpdatePaymentResultTopic, subscriptionCheckout);
         }
 
         //Start Message Processor
-        public async Task Start() 
+        public async Task Start()
         {
             checkoutProcessor.ProcessMessageAsync += OnCheckOutMessageReceived;
             checkoutProcessor.ProcessErrorAsync += ErrorHandler;
             await checkoutProcessor.StartProcessingAsync();
+
+            orderUpdatePaymentStatusProcessor.ProcessMessageAsync += OnOrderPaymentUpdateReceived;
+            orderUpdatePaymentStatusProcessor.ProcessErrorAsync += ErrorHandler;
+            await orderUpdatePaymentStatusProcessor.StartProcessingAsync();
         }
 
         public async Task Stop()
         {
             await checkoutProcessor.StopProcessingAsync();
             await checkoutProcessor.DisposeAsync();
+
+            await orderUpdatePaymentStatusProcessor.StopProcessingAsync();
+            await orderUpdatePaymentStatusProcessor.DisposeAsync();
         }
 
         private Task ErrorHandler(ProcessErrorEventArgs arg)
@@ -64,9 +75,6 @@ namespace Mango.Services.OrderAPI.Messaging
             Console.WriteLine(arg.Exception.ToString());
             return Task.CompletedTask;
         }
-
-
-
 
         //message passed in from ServiceBus
         private async Task OnCheckOutMessageReceived(ProcessMessageEventArgs args)
@@ -133,10 +141,20 @@ namespace Mango.Services.OrderAPI.Messaging
                 throw;
             }
 
-        
+
         }
 
-        
+        private async Task OnOrderPaymentUpdateReceived(ProcessMessageEventArgs args)
+        {
+            var message = args.Message; 
+            var body = Encoding.UTF8.GetString(message.Body);
+
+            UpdatePaymentResultMessage paymentResultMessage = JsonConvert.DeserializeObject<UpdatePaymentResultMessage>(body);
+
+            await _orderRepository.UpdateOrderPaymentStatus(paymentResultMessage.OrderId, paymentResultMessage.Status);
+            await args.CompleteMessageAsync(args.Message);
+        }
+
     }
 }
 
