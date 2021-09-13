@@ -10,5 +10,8 @@ namespace Mango.Services.PaymentAPI.Messages
     {
         public int OrderId { get; set; }
         public bool Status { get; set; }
+
+        //to send email after payment processed
+        public string Email { get; set; }
     }
 }

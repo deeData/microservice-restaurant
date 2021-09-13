@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "aKNDVjeJRmmaP0siqhKyP79VJGYmpuLZ2uFU/+eKTUY4fAzT1KZhD0RG8Huf5G9RH2IQIPwbDzlVewg4zs9jDA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\deidr\\source\\repos\\MangoRestaurant\\Mango.Services.Email\\Mango.Services.Email.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\deidr\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\deidr\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\deidr\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\deidr\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\deidr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\deidr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
