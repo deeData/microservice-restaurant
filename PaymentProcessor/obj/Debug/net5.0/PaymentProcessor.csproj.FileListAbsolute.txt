@@ -1,0 +1,12 @@
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\bin\Debug\net5.0\PaymentProcessor.deps.json
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\bin\Debug\net5.0\PaymentProcessor.dll
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\bin\Debug\net5.0\ref\PaymentProcessor.dll
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\bin\Debug\net5.0\PaymentProcessor.pdb
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\PaymentProcessor.csproj.AssemblyReference.cache
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\PaymentProcessor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\PaymentProcessor.AssemblyInfoInputs.cache
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\PaymentProcessor.AssemblyInfo.cs
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\PaymentProcessor.csproj.CoreCompileInputs.cache
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\PaymentProcessor.dll
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\ref\PaymentProcessor.dll
+C:\Users\deidr\source\repos\MangoRestaurant\PaymentProcessor\obj\Debug\net5.0\PaymentProcessor.pdb

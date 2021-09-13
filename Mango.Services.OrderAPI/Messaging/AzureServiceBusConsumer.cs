@@ -1,4 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Mango.MessageBus;
 using Mango.Services.OrderAPI.Messages;
 using Mango.Services.OrderAPI.Models;
 using Mango.Services.OrderAPI.Repository;
@@ -17,6 +18,8 @@ namespace Mango.Services.OrderAPI.Messaging
         private readonly string serviceBusConnectionString;
         private readonly string subscriptionCheckout;
         private readonly string checkoutMessageTopic;
+        private readonly string orderPaymentProcessTopic;
+
         private readonly OrderRepository _orderRepository;
 
         //when someone checks out, a message will be sent to ServerBus, checkoutProcessor is responsible for reading that message
@@ -24,15 +27,18 @@ namespace Mango.Services.OrderAPI.Messaging
 
         //in order to pull in from appsettings
         private readonly IConfiguration _configuration;
+        private readonly IMessageBus _messageBus;
         
-        public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration)
+        public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration,IMessageBus messageBus)
         {
             _orderRepository = orderRepository;
             _configuration = configuration;
+            _messageBus = messageBus;
 
             serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
             subscriptionCheckout = _configuration.GetValue<string>("SubscriptionCheckout"); 
             checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
+            orderPaymentProcessTopic = _configuration.GetValue<string>("orderPaymentProcessTopic");
 
             //in order to use ServiceBusProcessor, need a client
             var client = new ServiceBusClient(serviceBusConnectionString);
@@ -103,6 +109,31 @@ namespace Mango.Services.OrderAPI.Messaging
                 orderHeader.OrderDetails.Add(orderDetails);
             }
             await _orderRepository.AddOrder(orderHeader);
+
+
+            PaymentRequestMessage paymentRequestMessage = new()
+            {
+                Name = orderHeader.FirstName + " " + orderHeader.LastName,
+                CardNumber = orderHeader.CardNumber,
+                CVV = orderHeader.CVV,
+                ExpiryMonthYear = orderHeader.ExpiryMonthYear,
+                OrderId = orderHeader.OrderHeaderId,
+                OrderTotal = orderHeader.OrderTotal
+            };
+
+            try
+            {
+                //create new topic in MangoRestaurant Azure ServiceBus called "orderpaymentprocesstopic"
+                //and its subscription as "mangoPayment"
+                await _messageBus.PublishMessage(paymentRequestMessage, orderPaymentProcessTopic);
+                await args.CompleteMessageAsync(args.Message);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+        
         }
 
         
