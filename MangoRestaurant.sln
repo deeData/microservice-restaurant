@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.PaymentAPI",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.Email", "Mango.Services.Email\Mango.Services.Email.csproj", "{D95188EF-C42E-443E-A5AF-49DB94E98F9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{C9F1B992-CDB7-4E57-8943-D91B16139899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.GatewaySolution", "Mango.GatewaySolution\Mango.GatewaySolution.csproj", "{C2742D29-7E60-460A-A66F-5CFF70C1D17E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{D95188EF-C42E-443E-A5AF-49DB94E98F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D95188EF-C42E-443E-A5AF-49DB94E98F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D95188EF-C42E-443E-A5AF-49DB94E98F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2742D29-7E60-460A-A66F-5CFF70C1D17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2742D29-7E60-460A-A66F-5CFF70C1D17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2742D29-7E60-460A-A66F-5CFF70C1D17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2742D29-7E60-460A-A66F-5CFF70C1D17E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +100,7 @@ Global
 		{71C24954-40C1-4D02-AB1A-AFE3733AA1D8} = {265CB31D-BA6B-46C3-94F4-C9CA9747B4C0}
 		{F4E66ABF-84DF-47AE-A3F6-9CC810B41FC1} = {A2B6A232-302C-4272-B6D7-BF57694B00C3}
 		{D95188EF-C42E-443E-A5AF-49DB94E98F9F} = {A2B6A232-302C-4272-B6D7-BF57694B00C3}
+		{C2742D29-7E60-460A-A66F-5CFF70C1D17E} = {C9F1B992-CDB7-4E57-8943-D91B16139899}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8F85AEC6-891F-479E-BE3C-83DC1FEFF8AF}
