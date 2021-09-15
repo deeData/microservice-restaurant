@@ -9,6 +9,7 @@ using Ocelot.Logging;
 using Ocelot.Middleware;
 using System;
 using System.Configuration;
+using System.IO;
 
 namespace Mango.GatewaySolution
 {
@@ -29,11 +30,16 @@ namespace Mango.GatewaySolution
             _logger = loggerFactory.CreateLogger<Startup>();
         }
 
+        private void LogInfo(string info)
+        {
+            string thisFile = new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName();
+            _logger.LogInformation("From Logger::::" + info +" FILE:::: "+ thisFile); 
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            _logger.LogInformation("========================>Begin ConfigureService");
+            LogInfo("Begin ConfigureService");
             services
                 .AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
@@ -48,13 +54,13 @@ namespace Mango.GatewaySolution
 
             services.AddOcelot();
 
-            _logger.LogInformation("========================>End ConfigureService");
+            LogInfo("End ConfigureService");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            _logger.LogInformation("========================>Begin Configure");
+            _logger.LogInformation("Begin Configure");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -73,7 +79,7 @@ namespace Mango.GatewaySolution
 
             //use Ocelot endpoint
             await app.UseOcelot();
-            _logger.LogInformation("========================>End Configure");
+            _logger.LogInformation("End Configure");
 
         }
     }
