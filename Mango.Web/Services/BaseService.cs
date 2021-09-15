@@ -49,21 +49,30 @@ namespace Mango.Web.Services
                 }
                 
                 HttpResponseMessage apiResponse = null;
-                switch (apiRequest.ApiType)
+                message.Method = apiRequest.ApiType switch
                 {
-                    case SD.ApiType.POST:
-                        message.Method = HttpMethod.Post;
-                        break;
-                    case SD.ApiType.PUT:
-                        message.Method = HttpMethod.Put;
-                        break;
-                    case SD.ApiType.DELETE:
-                        message.Method = HttpMethod.Delete;
-                        break;
-                    default:
-                        message.Method = HttpMethod.Get;
-                        break;
-                }
+                    SD.ApiType.GET => HttpMethod.Get,
+                    SD.ApiType.POST => HttpMethod.Post,
+                    SD.ApiType.PUT => HttpMethod.Put,
+                    SD.ApiType.DELETE => HttpMethod.Delete,
+                   // _ => throw new ArgumentException(nameof(apiRequest.ApiType))
+                };
+
+                //switch (apiRequest.ApiType)
+                //{
+                //    case SD.ApiType.POST:
+                //        message.Method = HttpMethod.Post;
+                //        break;
+                //    case SD.ApiType.PUT:
+                //        message.Method = HttpMethod.Put;
+                //        break;
+                //    case SD.ApiType.DELETE:
+                //        message.Method = HttpMethod.Delete;
+                //        break;
+                //    default:
+                //        message.Method = HttpMethod.Get;
+                //        break;
+                //}
                 apiResponse = await client.SendAsync(message);
                 
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
